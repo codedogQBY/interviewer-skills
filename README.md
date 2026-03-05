@@ -26,72 +26,39 @@ interviewer-skills/
 
 ## 如何使用
 
-主流 AI 编程工具均已支持 Agent Skills 机制（基于 `SKILL.md` 标准格式）。以下是各工具的安装方式。
-
-### 方式一：通过 CLI 工具一键安装
+### 一键安装（推荐）
 
 ```bash
-# OpenSkills（通用，支持 Cursor / Claude Code / Windsurf / CodeBuddy 等）
-npm i -g openskills
-openskills install <github-repo-or-skill-name>
+# 安装面试官模拟 Skill
+npx skills add https://github.com/codedogQBY/interviewer-skills/tree/main/bytedance-frontend-interviewer --skill bytedance-frontend-interviewer
 
-# ClawHub CLI（支持 OpenClaw 生态工具）
-npx clawhub@latest install <skill-name>
+# 安装面试应答 Skill
+npx skills add https://github.com/codedogQBY/interviewer-skills/tree/main/frontend-interview-responder --skill frontend-interview-responder
 ```
 
-### 方式二：手动安装到各工具 Skills 目录
+支持所有主流 AI 编程工具：**Cursor** / **Claude Code** / **Windsurf** / **CodeBuddy** / **Trae** / **GitHub Copilot** / **Cline** / **Codex CLI** / **Roo Code** / **Aider** 等。
 
-将 skill 目录（含 `SKILL.md`）复制到对应路径即可：
+### 手动安装
+
+将 skill 目录（含 `SKILL.md`）复制到对应工具的 Skills 加载路径：
 
 | 工具 | 全局路径 | 项目级路径 |
 |------|---------|-----------|
-| **Claude Code** | `~/.claude/skills/` | `<项目>/.claude/skills/` |
-| **Cursor** | `~/.cursor/skills/` | `<项目>/.cursor/skills/` |
-| **Windsurf** | `~/.codeium/windsurf/skills/` | `<项目>/.windsurf/skills/` |
+| **Claude Code** | `~/.claude/skills/` | `.claude/skills/` |
+| **Cursor** | `~/.cursor/skills/` | `.cursor/skills/` |
+| **Windsurf** | `~/.codeium/windsurf/skills/` | `.windsurf/skills/` |
 | **CodeBuddy** | 用户级 Skill 目录 | 项目根目录 |
-| **Trae（字节）** | `~/.trae/skills/` | `<项目>/.trae/skills/` |
-| **GitHub Copilot** | 个人级 Skill 目录 | `<项目>/.github/skills/` |
-| **Cline** | `~/.cline/skills/` | `<项目>/.agents/skills/` |
-| **OpenAI Codex CLI** | `~/.codex/skills/` | `<项目>/.agents/skills/` |
-| **Roo Code** | `~/.roo/skills/` | `<项目>/.roo/skills/` |
+| **Trae** | `~/.trae/skills/` | `.trae/skills/` |
+| **GitHub Copilot** | 个人级 Skill 目录 | `.github/skills/` |
+| **Cline** | `~/.cline/skills/` | `.agents/skills/` |
+| **Codex CLI** | `~/.codex/skills/` | `.agents/skills/` |
+| **Roo Code** | `~/.roo/skills/` | `.roo/skills/` |
 | **Augment Code** | 通过 IDE 设置导入 | 项目级自定义指令 |
-| **Aider** | `~/.aider/skills/` | `<项目>/.aider/skills/` |
+| **Aider** | `~/.aider/skills/` | `.aider/skills/` |
 
-> 路径优先级：项目级 > 全局。部分工具的路径可能随版本更新变化，请参考各工具官方文档。
+### 直接粘贴到对话
 
-### 方式三：通过工具内 UI 导入
-
-以下工具支持在设置界面中直接导入 `SKILL.md` 文件：
-
-- **Trae**：设置 → 规则和技能 → 技能 → 创建 → 导入文件
-- **Cursor**：Settings → Rules → Skills → 导入
-- **CodeBuddy**：对话中使用触发关键词自动激活，或通过 Skill 管理面板添加
-
-### 方式四：通过 Claude Code 插件命令安装
-
-```bash
-# 在 Claude Code 终端中执行
-/plugin marketplace add anthropics/skills
-/plugin install <skill-package-name>
-
-# 或直接使用 /skill 命令管理
-/skill list
-/skill add <path-to-skill-directory>
-```
-
-### 方式五：直接粘贴到对话
-
-将 `SKILL.md` 的内容直接粘贴到任何 AI 对话中即可使用，适用于：
-
-- **JetBrains AI Assistant** — 粘贴到聊天窗口或自定义 Prompt
-- **Amazon Q Developer** — 粘贴到对话上下文
-- **Gemini Code Assist** — 粘贴到聊天界面
-- **通义灵码（Lingma）** — 粘贴到对话窗口
-- 以及任何支持自定义 System Prompt 的工具
-
-### 兼容性说明
-
-所有 Skills 遵循 [Agent Skills 开放规范](https://github.com/agentskills/agentskills)，核心是 `SKILL.md` + YAML frontmatter 的标准结构，可在支持该规范的工具间无缝迁移。
+将 `SKILL.md` 内容直接粘贴到 AI 对话中即可，适用于 **JetBrains AI** / **Amazon Q** / **Gemini Code Assist** / **通义灵码** 等任何支持自定义 Prompt 的工具。
 
 ## 如何新增 Skill
 
